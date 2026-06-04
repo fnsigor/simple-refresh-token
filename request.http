@@ -1,0 +1,27 @@
+POST http://localhost:3333/create-user
+Content-Type: application/json
+
+{
+    "email": "robin.nico@email.com",
+    "password": "password"
+}
+
+
+###
+
+POST http://localhost:3333/login
+Content-Type: application/json
+
+{
+    "email": "email2@dominio.com",
+    "password": "password"
+}
+
+
+###
+
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAyIiwiZW1haWwiOiJlbWFpbDJAZG9taW5pby5jb20iLCJpYXQiOjE3ODA1ODU2NzEsImV4cCI6MTc4MDY3MjA3MX0.tyfWnKtKsZXDcN5Sg6k9b67xLc5DgXamLKnfcIS1in8
+GET http://localhost:3333/profile?email="email@dominio.com"
+Content-Type: application/json
+Authorization: Bearer {{token}}
