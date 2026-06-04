@@ -10,9 +10,9 @@ import {
   validatorCompiler,
   jsonSchemaTransform,
 } from "fastify-type-provider-zod";
-import { createUserRoute } from "./create-user/route";
-import { loginRoute } from "./login/route";
-import { profileRoute } from "./profile/route";
+import { createUserRoute } from "./@types/endpoints/create-user/route";
+import { loginRoute } from "./@types/endpoints/login/route";
+import { profileRoute } from "./@types/endpoints/profile/route";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
