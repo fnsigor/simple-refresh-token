@@ -10,9 +10,10 @@ import {
   validatorCompiler,
   jsonSchemaTransform,
 } from "fastify-type-provider-zod";
-import { createUserRoute } from "./@types/endpoints/create-user/route";
-import { loginRoute } from "./@types/endpoints/login/route";
-import { profileRoute } from "./@types/endpoints/profile/route";
+import { createUserRoute } from "./endpoints/create-user/route";
+import { loginRoute } from "./endpoints/login/route";
+import { profileRoute } from "./endpoints/profile/route";
+import { refreshRoute } from "./endpoints/refresh/route";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -47,6 +48,7 @@ app.register(SwaggerUi, {
 app.register(createUserRoute);
 app.register(loginRoute);
 app.register(profileRoute);
+app.register(refreshRoute);
 
 app.listen({ port: PORT, host: "0.0.0.0" }, () =>
   console.log(`server running on port ${PORT}`),

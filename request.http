@@ -21,7 +21,7 @@ Content-Type: application/json
 ###
 
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAyIiwiZW1haWwiOiJlbWFpbDJAZG9taW5pby5jb20iLCJpYXQiOjE3ODA1ODU2NzEsImV4cCI6MTc4MDY3MjA3MX0.tyfWnKtKsZXDcN5Sg6k9b67xLc5DgXamLKnfcIS1in8
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAyIiwiaWF0IjoxNzgwOTY3ODc2LCJleHAiOjE3ODA5Njc4OTF9.j-lOVf6qlI9EWxGE8PlgyuYcGHo9wHpf7Evos5v6UbY
 GET http://localhost:3333/profile?email="email@dominio.com"
 Content-Type: application/json
 Authorization: Bearer {{token}}

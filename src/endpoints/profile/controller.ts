@@ -4,7 +4,7 @@ import { useCase } from "./useCase";
 
 export const controller = async (
   request: FastifyRequest<{ Querystring: RequestQuery }>,
-  reply: FastifyReply<{ Reply: RequestSuccess | RequestError }>,
+  reply: FastifyReply,
 ) => {
   try {
     const { email } = request.query;
@@ -12,7 +12,7 @@ export const controller = async (
     const response = await useCase({ email });
 
     return reply.status(200).send(response);
-  } catch (error) {
+  } catch (error: any) {
     console.log({ error });
     return reply
       .status(500)

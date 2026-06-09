@@ -1,13 +1,13 @@
 import { USERS } from "db";
 import { RequestBody, RequestSuccess } from "./schema";
 import argon2 from "argon2";
-import jwt from "jsonwebtoken";
-import { JWT_ALGORITHM, JWT_SECRET } from "env";
+import { TokenFactory } from "@/utils/TokenFactory";
 
 export const useCase = async ({
   email,
   password,
-}: RequestBody): Promise<RequestSuccess> => {
+  ip,
+}: RequestBody & { ip: string }): Promise<RequestSuccess> => {
   const userExists = USERS.get(email);
 
   if (!userExists) {
@@ -20,20 +20,16 @@ export const useCase = async ({
     throw new Error(`Credenciais inválidas`);
   }
 
-  const jwtToken = jwt.sign(
-    {
-      id: userExists.id,
-      email: userExists.email,
-    },
-    JWT_SECRET,
-    {
-      expiresIn: 15, //15 segundos
-      algorithm: JWT_ALGORITHM,
-    },
+  const { generateAccessToken, generateRefreshToken } = new TokenFactory(
+    userExists.id,
   );
 
+  const accessToken = generateAccessToken();
+  const refreshToken = generateRefreshToken({ ip });
+
   const response = {
-    token: jwtToken,
+    accessToken,
+    refreshToken,
     user: { email: userExists.email, name: userExists.name },
   };
 

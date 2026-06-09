@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { RequestBody, RequestError, RequestSuccess } from "./schema";
+import { RequestBody } from "./schema";
 import { useCase } from "./useCase";
 
 export const controller = async (
@@ -8,8 +8,10 @@ export const controller = async (
 ) => {
   try {
     const { email, password } = request.body;
+    const ip = request.ip;
 
-    const response = await useCase({ email, password });
+    const response = await useCase({ email, password, ip });
+    return reply.status(200).send(response);
   } catch (error) {
     console.log({ error });
     return reply.status(500).send({ message: "erro" });

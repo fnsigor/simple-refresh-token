@@ -1,6 +1,11 @@
 import { FastifyInstance } from "fastify";
-import { querySchema, requestErrorSchema, requestSuccessSchema } from "./schema";
+import {
+  querySchema,
+  requestErrorSchema,
+  requestSuccessSchema,
+} from "./schema";
 import { controller } from "./controller";
+import { auth } from "@/middlewares/auth";
 
 export const profileRoute = (app: FastifyInstance) => {
   app.get("/profile", {
